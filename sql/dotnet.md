@@ -8,6 +8,7 @@
 
 ```csharp
 using System;
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
 namespace test
@@ -15,6 +16,11 @@ namespace test
     public class Program
     {
         public static void Main()
+        {
+            main().Wait();
+        }
+
+        public static async Task main()
         {
             string connStr = System.Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
             using (var conn = new SqlConnection(connStr))
